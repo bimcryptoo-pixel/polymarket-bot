@@ -1,196 +1,51 @@
 {
- "last_update": "2026-10-08T06:45:30+00:00",
+ "last_update": "2026-10-08T10:24:05+00:00",
  "kpis": {
-  "total_pnl_usd": 0,
-  "n_closed": 0,
+  "total_pnl_usd": -86.12,
+  "n_closed": 8,
   "n_open": 7,
-  "win_rate": null,
-  "best_usd": null,
-  "worst_usd": null,
-  "whales_tracked": 10
+  "win_rate": 0.75,
+  "best_usd": 44.97,
+  "worst_usd": -100.0,
+  "whales_tracked": 21
  },
  "equity_curve": [
-  {
-   "t": 0,
-   "pnl": 0.0
-  }
+  {"t": 0, "pnl": 0.0},
+  {"t": 1, "pnl": -100.0, "at": "2026-10-08T10:24:08+00:00"},
+  {"t": 2, "pnl": -64.86, "at": "2026-10-08T10:24:08+00:00"},
+  {"t": 3, "pnl": -63.85, "at": "2026-10-08T10:24:10+00:00"},
+  {"t": 4, "pnl": -37.27, "at": "2026-10-08T10:24:13+00:00"},
+  {"t": 5, "pnl": -34.18, "at": "2026-10-08T10:24:14+00:00"},
+  {"t": 6, "pnl": -31.09, "at": "2026-10-08T10:24:14+00:00"},
+  {"t": 7, "pnl": 13.88, "at": "2026-10-08T10:24:16+00:00"},
+  {"t": 8, "pnl": -86.12, "at": "2026-10-08T10:24:17+00:00"}
  ],
  "open_positions": [
-  {
-   "title": "Shanghai Rolex Masters: Thiago Agustin Tirante vs Hamad Medjedovic",
-   "side": "Thiago Agustin Tirante",
-   "entry_price": 0.79,
-   "current_price": null,
-   "stake_usd": 100.0,
-   "unrealized_pnl_usd": null,
-   "opened_at": "2026-10-08T06:45:31+00:00",
-   "wallet": "0x5268…135d",
-   "wallet_name": "HomeRunHazard"
-  },
-  {
-   "title": "Exact Score: Any Other Score?",
-   "side": "No",
-   "entry_price": 0.99,
-   "current_price": null,
-   "stake_usd": 100.0,
-   "unrealized_pnl_usd": null,
-   "opened_at": "2026-10-08T06:15:31+00:00",
-   "wallet": "0xebc4…1c57",
-   "wallet_name": ""
-  },
-  {
-   "title": "LoL: FlyQuest vs RED Canids (BO3) - Demacia Cup Global Invitational Gr",
-   "side": "FlyQuest",
-   "entry_price": 0.84,
-   "current_price": null,
-   "stake_usd": 100.0,
-   "unrealized_pnl_usd": null,
-   "opened_at": "2026-10-08T06:15:31+00:00",
-   "wallet": "0x6ac5…4b6e",
-   "wallet_name": "crispychook99"
-  },
-  {
-   "title": "Suzhou: Oleksandra Oliynykova vs Aliona Falei",
-   "side": "Aliona Falei",
-   "entry_price": 0.99,
-   "current_price": null,
-   "stake_usd": 100.0,
-   "unrealized_pnl_usd": null,
-   "opened_at": "2026-10-08T06:15:30+00:00",
-   "wallet": "0x5bfe…3258",
-   "wallet_name": "01258787xy48487484545122"
-  },
-  {
-   "title": "Shanghai Rolex Masters: Nuno Borges vs Facundo Acosta",
-   "side": "Facundo Acosta",
-   "entry_price": 0.32,
-   "current_price": null,
-   "stake_usd": 100.0,
-   "unrealized_pnl_usd": null,
-   "opened_at": "2026-10-08T05:14:34+00:00",
-   "wallet": "0x9cb9…32f2",
-   "wallet_name": "jtwyslljy"
-  },
-  {
-   "title": "Shanghai Rolex Masters: Nuno Borges vs Facundo Acosta",
-   "side": "Nuno Borges",
-   "entry_price": 0.74,
-   "current_price": null,
-   "stake_usd": 100.0,
-   "unrealized_pnl_usd": null,
-   "opened_at": "2026-10-08T05:14:34+00:00",
-   "wallet": "0xbdc3…c0ea",
-   "wallet_name": "Ilgato"
-  },
-  {
-   "title": "Game Handicap: TY (-1.5) vs LGD Gaming (+1.5)",
-   "side": "Team Yandex",
-   "entry_price": 0.63,
-   "current_price": null,
-   "stake_usd": 100.0,
-   "unrealized_pnl_usd": null,
-   "opened_at": "2026-10-08T05:14:34+00:00",
-   "wallet": "0xcdfb…980c",
-   "wallet_name": "ImSmart"
-  }
+  {"title": "China Open: Ekaterina Alexandrova vs Mirra Andreeva", "side": "Mirra Andreeva", "entry_price": 0.74, "current_price": 0.735, "stake_usd": 100.0, "unrealized_pnl_usd": -0.68, "opened_at": "2026-10-08T10:23:11+00:00", "wallet": "0x5901…63a2", "wallet_name": "kamloic"},
+  {"title": "Shanghai Rolex Masters: Botic van de Zandschulp vs Daniel Merida Aguil", "side": "Daniel Merida Aguilar", "entry_price": 0.75, "current_price": 0.565, "stake_usd": 100.0, "unrealized_pnl_usd": -24.67, "opened_at": "2026-10-08T10:15:32+00:00", "wallet": "0x2a69…d2f7", "wallet_name": "UpTheBlues"},
+  {"title": "LoL: FlyQuest vs RED Canids - Game 2 Winner", "side": "FlyQuest", "entry_price": 0.68, "current_price": 0.955, "stake_usd": 100.0, "unrealized_pnl_usd": 40.44, "opened_at": "2026-10-08T10:15:32+00:00", "wallet": "0x19af…489c", "wallet_name": "uerri6"},
+  {"title": "Dota 2: Team Yandex vs LGD Gaming - Game 1 Winner", "side": "Team Yandex", "entry_price": 0.8546, "current_price": 0.9995, "stake_usd": 100.0, "unrealized_pnl_usd": 16.96, "opened_at": "2026-10-08T09:45:31+00:00", "wallet": "0xe907…cff6", "wallet_name": "suntori"},
+  {"title": "Exact Score: Any Other Score?", "side": "No", "entry_price": 0.99, "current_price": 0.625, "stake_usd": 100.0, "unrealized_pnl_usd": -36.87, "opened_at": "2026-10-08T06:15:31+00:00", "wallet": "0xebc4…1c57", "wallet_name": ""},
+  {"title": "LoL: FlyQuest vs RED Canids (BO3) - Demacia Cup Global Invitational Gr", "side": "FlyQuest", "entry_price": 0.84, "current_price": 0.985, "stake_usd": 100.0, "unrealized_pnl_usd": 17.26, "opened_at": "2026-10-08T06:15:31+00:00", "wallet": "0x6ac5…4b6e", "wallet_name": "crispychook99"},
+  {"title": "Game Handicap: TY (-1.5) vs LGD Gaming (+1.5)", "side": "Team Yandex", "entry_price": 0.63, "current_price": 0.775, "stake_usd": 100.0, "unrealized_pnl_usd": 23.02, "opened_at": "2026-10-08T05:14:34+00:00", "wallet": "0xcdfb…980c", "wallet_name": "ImSmart"}
  ],
- "recent_whales": [
-  {
-   "wallet": "0xc0a5ecceff48cd8f313cd658cdb609e8b5231f5f",
-   "wallet_name": "Illiasca",
-   "title": "Shanghai Rolex Masters: Bernard Tomic vs Matteo Arnaldi",
-   "side": "SELL",
-   "outcome": "Matteo Arnaldi",
-   "price": 0.9761110363,
-   "value_usd": 7073.26,
-   "ts": 1791441689
-  },
-  {
-   "wallet": "0x5268527977f700f9bf9b6d5cd843859e4e70135d",
-   "wallet_name": "HomeRunHazard",
-   "title": "Shanghai Rolex Masters: Thiago Agustin Tirante vs Hamad Medjedovic",
-   "side": "BUY",
-   "outcome": "Thiago Agustin Tirante",
-   "price": 0.79,
-   "value_usd": 5310.0,
-   "ts": 1791441672
-  },
-  {
-   "wallet": "0x6daae04265d65cb2aae7fe6db4210568de7d954a",
-   "wallet_name": "0x6daae04265d65cb2aae7fe6db4210568de7d954a-1783406213213",
-   "title": "Shanghai Rolex Masters: Camilo Ugo Carabelli vs Ilia Simakin",
-   "side": "SELL",
-   "outcome": "Camilo Ugo Carabelli",
-   "price": 0.999,
-   "value_usd": 2381.18,
-   "ts": 1791441626
-  }
- ],
+ "recent_whales": [],
  "whale_ranking": [
-  {
-   "wallet": "0x6ac5…4b6e",
-   "wallet_name": "crispychook99",
-   "trades": 1,
-   "volume_usd": 36774.39
-  },
-  {
-   "wallet": "0x3435…a1ed",
-   "wallet_name": "veliMax",
-   "trades": 1,
-   "volume_usd": 9989.99
-  },
-  {
-   "wallet": "0xc0a5…1f5f",
-   "wallet_name": "Illiasca",
-   "trades": 1,
-   "volume_usd": 7073.26
-  },
-  {
-   "wallet": "0xebc4…1c57",
-   "wallet_name": "",
-   "trades": 1,
-   "volume_usd": 6449.85
-  },
-  {
-   "wallet": "0x5268…135d",
-   "wallet_name": "HomeRunHazard",
-   "trades": 1,
-   "volume_usd": 5310.0
-  },
-  {
-   "wallet": "0x9cb9…32f2",
-   "wallet_name": "jtwyslljy",
-   "trades": 1,
-   "volume_usd": 4960.0
-  },
-  {
-   "wallet": "0x5bfe…3258",
-   "wallet_name": "01258787xy48487484545122",
-   "trades": 1,
-   "volume_usd": 3616.63
-  },
-  {
-   "wallet": "0xbdc3…c0ea",
-   "wallet_name": "Ilgato",
-   "trades": 1,
-   "volume_usd": 2998.83
-  },
-  {
-   "wallet": "0xcdfb…980c",
-   "wallet_name": "ImSmart",
-   "trades": 1,
-   "volume_usd": 2856.6
-  },
-  {
-   "wallet": "0x6daa…954a",
-   "wallet_name": "0x6daae04265d65cb2aae7fe6db4210568de7d954a-1783406213213",
-   "trades": 1,
-   "volume_usd": 2381.18
-  }
+  {"wallet": "0x6ac5…4b6e", "wallet_name": "crispychook99", "trades": 1, "volume_usd": 36774.39},
+  {"wallet": "0xc0a5…1f5f", "wallet_name": "Illiasca", "trades": 2, "volume_usd": 10073.26},
+  {"wallet": "0x3435…a1ed", "wallet_name": "veliMax", "trades": 1, "volume_usd": 9989.99},
+  {"wallet": "0xae51…1d03", "wallet_name": "_test_i075_i078_1", "trades": 1, "volume_usd": 7425.0},
+  {"wallet": "0xebc4…1c57", "wallet_name": "", "trades": 1, "volume_usd": 6449.85},
+  {"wallet": "0x3f98…0aa1", "wallet_name": "xabidaking", "trades": 1, "volume_usd": 6059.06},
+  {"wallet": "0x5268…135d", "wallet_name": "HomeRunHazard", "trades": 1, "volume_usd": 5310.0},
+  {"wallet": "0x9cb9…32f2", "wallet_name": "jtwyslljy", "trades": 1, "volume_usd": 4960.0},
+  {"wallet": "0x5bfe…3258", "wallet_name": "01258787xy48487484545122", "trades": 1, "volume_usd": 3616.63},
+  {"wallet": "0xb9ee…8c9c", "wallet_name": "camscot", "trades": 1, "volume_usd": 3480.0},
+  {"wallet": "0xe907…cff6", "wallet_name": "suntori", "trades": 1, "volume_usd": 3284.76},
+  {"wallet": "0x5901…63a2", "wallet_name": "kamloic", "trades": 1, "volume_usd": 3031.14},
+  {"wallet": "0xbdc3…c0ea", "wallet_name": "Ilgato", "trades": 1, "volume_usd": 2998.83},
+  {"wallet": "0x3193…ed9e", "wallet_name": "Ss1984", "trades": 1, "volume_usd": 2910.0},
+  {"wallet": "0xcdfb…980c", "wallet_name": "ImSmart", "trades": 1, "volume_usd": 2856.6}
  ],
- "config": {
-  "min_whale_trade_usd": 2000,
-  "paper_stake_usd": 100,
-  "max_positions": 20
- }
+ "config": {"min_whale_trade_usd": 2000, "paper_stake_usd": 100, "max_positions": 20}
 }
