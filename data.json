@@ -1,0 +1,196 @@
+{
+ "last_update": "2026-10-08T06:45:30+00:00",
+ "kpis": {
+  "total_pnl_usd": 0,
+  "n_closed": 0,
+  "n_open": 7,
+  "win_rate": null,
+  "best_usd": null,
+  "worst_usd": null,
+  "whales_tracked": 10
+ },
+ "equity_curve": [
+  {
+   "t": 0,
+   "pnl": 0.0
+  }
+ ],
+ "open_positions": [
+  {
+   "title": "Shanghai Rolex Masters: Thiago Agustin Tirante vs Hamad Medjedovic",
+   "side": "Thiago Agustin Tirante",
+   "entry_price": 0.79,
+   "current_price": null,
+   "stake_usd": 100.0,
+   "unrealized_pnl_usd": null,
+   "opened_at": "2026-10-08T06:45:31+00:00",
+   "wallet": "0x5268…135d",
+   "wallet_name": "HomeRunHazard"
+  },
+  {
+   "title": "Exact Score: Any Other Score?",
+   "side": "No",
+   "entry_price": 0.99,
+   "current_price": null,
+   "stake_usd": 100.0,
+   "unrealized_pnl_usd": null,
+   "opened_at": "2026-10-08T06:15:31+00:00",
+   "wallet": "0xebc4…1c57",
+   "wallet_name": ""
+  },
+  {
+   "title": "LoL: FlyQuest vs RED Canids (BO3) - Demacia Cup Global Invitational Gr",
+   "side": "FlyQuest",
+   "entry_price": 0.84,
+   "current_price": null,
+   "stake_usd": 100.0,
+   "unrealized_pnl_usd": null,
+   "opened_at": "2026-10-08T06:15:31+00:00",
+   "wallet": "0x6ac5…4b6e",
+   "wallet_name": "crispychook99"
+  },
+  {
+   "title": "Suzhou: Oleksandra Oliynykova vs Aliona Falei",
+   "side": "Aliona Falei",
+   "entry_price": 0.99,
+   "current_price": null,
+   "stake_usd": 100.0,
+   "unrealized_pnl_usd": null,
+   "opened_at": "2026-10-08T06:15:30+00:00",
+   "wallet": "0x5bfe…3258",
+   "wallet_name": "01258787xy48487484545122"
+  },
+  {
+   "title": "Shanghai Rolex Masters: Nuno Borges vs Facundo Acosta",
+   "side": "Facundo Acosta",
+   "entry_price": 0.32,
+   "current_price": null,
+   "stake_usd": 100.0,
+   "unrealized_pnl_usd": null,
+   "opened_at": "2026-10-08T05:14:34+00:00",
+   "wallet": "0x9cb9…32f2",
+   "wallet_name": "jtwyslljy"
+  },
+  {
+   "title": "Shanghai Rolex Masters: Nuno Borges vs Facundo Acosta",
+   "side": "Nuno Borges",
+   "entry_price": 0.74,
+   "current_price": null,
+   "stake_usd": 100.0,
+   "unrealized_pnl_usd": null,
+   "opened_at": "2026-10-08T05:14:34+00:00",
+   "wallet": "0xbdc3…c0ea",
+   "wallet_name": "Ilgato"
+  },
+  {
+   "title": "Game Handicap: TY (-1.5) vs LGD Gaming (+1.5)",
+   "side": "Team Yandex",
+   "entry_price": 0.63,
+   "current_price": null,
+   "stake_usd": 100.0,
+   "unrealized_pnl_usd": null,
+   "opened_at": "2026-10-08T05:14:34+00:00",
+   "wallet": "0xcdfb…980c",
+   "wallet_name": "ImSmart"
+  }
+ ],
+ "recent_whales": [
+  {
+   "wallet": "0xc0a5ecceff48cd8f313cd658cdb609e8b5231f5f",
+   "wallet_name": "Illiasca",
+   "title": "Shanghai Rolex Masters: Bernard Tomic vs Matteo Arnaldi",
+   "side": "SELL",
+   "outcome": "Matteo Arnaldi",
+   "price": 0.9761110363,
+   "value_usd": 7073.26,
+   "ts": 1791441689
+  },
+  {
+   "wallet": "0x5268527977f700f9bf9b6d5cd843859e4e70135d",
+   "wallet_name": "HomeRunHazard",
+   "title": "Shanghai Rolex Masters: Thiago Agustin Tirante vs Hamad Medjedovic",
+   "side": "BUY",
+   "outcome": "Thiago Agustin Tirante",
+   "price": 0.79,
+   "value_usd": 5310.0,
+   "ts": 1791441672
+  },
+  {
+   "wallet": "0x6daae04265d65cb2aae7fe6db4210568de7d954a",
+   "wallet_name": "0x6daae04265d65cb2aae7fe6db4210568de7d954a-1783406213213",
+   "title": "Shanghai Rolex Masters: Camilo Ugo Carabelli vs Ilia Simakin",
+   "side": "SELL",
+   "outcome": "Camilo Ugo Carabelli",
+   "price": 0.999,
+   "value_usd": 2381.18,
+   "ts": 1791441626
+  }
+ ],
+ "whale_ranking": [
+  {
+   "wallet": "0x6ac5…4b6e",
+   "wallet_name": "crispychook99",
+   "trades": 1,
+   "volume_usd": 36774.39
+  },
+  {
+   "wallet": "0x3435…a1ed",
+   "wallet_name": "veliMax",
+   "trades": 1,
+   "volume_usd": 9989.99
+  },
+  {
+   "wallet": "0xc0a5…1f5f",
+   "wallet_name": "Illiasca",
+   "trades": 1,
+   "volume_usd": 7073.26
+  },
+  {
+   "wallet": "0xebc4…1c57",
+   "wallet_name": "",
+   "trades": 1,
+   "volume_usd": 6449.85
+  },
+  {
+   "wallet": "0x5268…135d",
+   "wallet_name": "HomeRunHazard",
+   "trades": 1,
+   "volume_usd": 5310.0
+  },
+  {
+   "wallet": "0x9cb9…32f2",
+   "wallet_name": "jtwyslljy",
+   "trades": 1,
+   "volume_usd": 4960.0
+  },
+  {
+   "wallet": "0x5bfe…3258",
+   "wallet_name": "01258787xy48487484545122",
+   "trades": 1,
+   "volume_usd": 3616.63
+  },
+  {
+   "wallet": "0xbdc3…c0ea",
+   "wallet_name": "Ilgato",
+   "trades": 1,
+   "volume_usd": 2998.83
+  },
+  {
+   "wallet": "0xcdfb…980c",
+   "wallet_name": "ImSmart",
+   "trades": 1,
+   "volume_usd": 2856.6
+  },
+  {
+   "wallet": "0x6daa…954a",
+   "wallet_name": "0x6daae04265d65cb2aae7fe6db4210568de7d954a-1783406213213",
+   "trades": 1,
+   "volume_usd": 2381.18
+  }
+ ],
+ "config": {
+  "min_whale_trade_usd": 2000,
+  "paper_stake_usd": 100,
+  "max_positions": 20
+ }
+}

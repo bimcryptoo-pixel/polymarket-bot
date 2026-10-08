@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>🐋 Polymarket Whale Tracker — Paper Trading</title>
+<style>
+  :root{
+    --bg:#0b0e13; --card:#12161d; --card2:#161c25; --border:#1f2632;
+    --text:#e8ebf1; --muted:#8b94a3; --faint:#5b6472;
+    --green:#22c55e; --green-dim:#14532d; --red:#ef4444; --red-dim:#5b1d1d;
+    --blue:#3b82f6; --amber:#f59e0b;
+    --radius:14px;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
+    font-size:15px; line-height:1.45;
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:16px 14px 48px}
+
+  /* ---------- header ---------- */
+  header{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:4px}
+  .logo{font-size:30px}
+  h1{font-size:20px; margin:0; letter-spacing:.3px}
+  h1 small{display:block; font-size:12px; color:var(--muted); font-weight:400; letter-spacing:.6px}
+  .sim-badge{
+    margin-left:auto; font-size:11px; font-weight:700; letter-spacing:1.2px;
+    color:var(--amber); border:1px solid var(--amber); border-radius:999px;
+    padding:5px 12px; background:rgba(245,158,11,.08); white-space:nowrap;
+  }
+  .updated{color:var(--faint); font-size:12px; margin:6px 0 16px}
+  .updated b{color:var(--muted); font-weight:600}
+
+  /* ---------- KPIs ---------- */
+  .kpis{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:14px}
+  .kpi{
+    background:linear-gradient(180deg,var(--card2),var(--card));
+    border:1px solid var(--border); border-radius:var(--radius);
+    padding:14px 12px; min-width:0;
+  }
+  .kpi.hero{grid-column:span 3; padding:18px 16px; display:flex; align-items:center; gap:16px}
+  .kpi .label{font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); margin-bottom:6px}
+  .kpi .value{font-size:26px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.5px}
+  .kpi.hero .value{font-size:44px}
+  .kpi .sub{font-size:12px; color:var(--faint); margin-top:4px}
+  .pos{color:var(--green)} .neg{color:var(--red)} .neu{color:var(--text)}
+
+  /* ---------- cards / seções ---------- */
+  .card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+        padding:16px 14px; margin-bottom:14px}
+  .card h2{font-size:13px; text-transform:uppercase; letter-spacing:1.2px; color:var(--muted);
+           margin:0 0 12px; display:flex; align-items:center; gap:8px}
+  .card h2 .count{background:var(--card2); border:1px solid var(--border); border-radius:999px;
+                  font-size:11px; padding:2px 10px; color:var(--text); letter-spacing:0}
+
+  /* ---------- gráfico ---------- */
+  #chart{width:100%; height:220px; display:block}
+  .chart-legend{display:flex; justify-content:space-between; font-size:11px; color:var(--faint); margin-top:6px}
+
+  /* ---------- posições ---------- */
+  .pos-item{border:1px solid var(--border); border-radius:10px; padding:12px; margin-bottom:10px;
+            background:var(--card2)}
+  .pos-item:last-child{margin-bottom:0}
+  .pos-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px}
+  .pos-title{font-weight:600; font-size:14px; flex:1; min-width:0}
+  .pos-pnl{font-weight:800; font-size:17px; font-variant-numeric:tabular-nums; white-space:nowrap}
+  .pos-meta{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; font-size:12px; color:var(--muted)}
+  .chip{background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:3px 8px;
+        font-variant-numeric:tabular-nums; white-space:nowrap}
+  .chip b{color:var(--text); font-weight:600}
+
+  /* ---------- baleias ---------- */
+  .whale{display:flex; gap:10px; align-items:center; padding:10px 4px; border-bottom:1px solid var(--border)}
+  .whale:last-child{border-bottom:none}
+  .whale .avatar{width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,#1e3a5f,#0f2027);
+                 display:flex; align-items:center; justify-content:center; font-size:16px; flex:none}
+  .whale .info{flex:1; min-width:0}
+  .whale .wname{font-weight:600; font-size:13px; font-family:ui-monospace,Menlo,monospace}
+  .whale .wmarket{font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .whale .wval{text-align:right; flex:none}
+  .whale .wval .amt{font-weight:800; font-variant-numeric:tabular-nums}
+  .side{font-size:11px; font-weight:700; border-radius:6px; padding:2px 8px; letter-spacing:.5px}
+  .side.yes{background:rgba(34,197,94,.14); color:var(--green); border:1px solid rgba(34,197,94,.35)}
+  .side.no{background:rgba(239,68,68,.12); color:var(--red); border:1px solid rgba(239,68,68,.35)}
+
+  /* ---------- ranking ---------- */
+  .rank{display:grid; grid-template-columns:28px 1fr auto; gap:10px; align-items:center; padding:9px 4px;
+        border-bottom:1px solid var(--border); font-size:13px}
+  .rank:last-child{border-bottom:none}
+  .rank .n{color:var(--faint); font-weight:700; font-variant-numeric:tabular-nums}
+  .rank .bar{height:6px; background:var(--bg); border-radius:3px; margin-top:5px; overflow:hidden}
+  .rank .bar i{display:block; height:100%; background:linear-gradient(90deg,var(--blue),#60a5fa); border-radius:3px}
+  .rank .vol{font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap}
+  .rank .trades{font-size:11px; color:var(--faint); text-align:right}
+
+  .empty{text-align:center; color:var(--faint); padding:26px 10px; font-size:14px}
+  .empty .big{font-size:30px; display:block; margin-bottom:8px}
+
+  footer{margin-top:22px; padding-top:14px; border-top:1px solid var(--border);
+         font-size:11.5px; color:var(--faint); line-height:1.6}
+  footer b{color:var(--muted)}
+
+  @media(min-width:720px){
+    .kpis{grid-template-columns:repeat(3,1fr)}
+    .kpi.hero{grid-column:span 1; flex-direction:column; align-items:flex-start; gap:0}
+    .kpi.hero .value{font-size:34px}
+    #chart{height:260px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo">🐋</div>
+    <h1>Whale Tracker<small>POLYMARKET · PAPER TRADING</small></h1>
+    <div class="sim-badge">SIMULAÇÃO</div>
+  </header>
+  <div class="updated">Última atualização: <b id="lastUpdate">—</b> · <span id="whaleCount"></span></div>
+
+  <section class="kpis" id="kpis">
+    <div class="kpi hero">
+      <div class="label">P&amp;L total (simulado)</div>
+      <div class="value neu" id="kPnl">$ 0.00</div>
+      <div class="sub" id="kPnlSub">— operações fechadas</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Win rate</div>
+      <div class="value neu" id="kWin">—</div>
+      <div class="sub" id="kWinSub">—</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Melhor operação</div>
+      <div class="value neu" id="kBest">—</div>
+      <div class="sub">simulado</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Pior operação</div>
+      <div class="value neu" id="kWorst">—</div>
+      <div class="sub">simulado</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Posições abertas</div>
+      <div class="value neu" id="kOpen">0</div>
+      <div class="sub" id="kOpenSub">$ 0 em jogo</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Baleias monitoradas</div>
+      <div class="value neu" id="kWhales">0</div>
+      <div class="sub">carteiras ≥ <span id="kMinWhale"></span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>📈 Evolução do P&amp;L</h2>
+    <canvas id="chart"></canvas>
+    <div class="chart-legend"><span id="chartMin"></span><span>operações fechadas · simulado</span><span id="chartMax"></span></div>
+  </section>
+
+  <section class="card">
+    <h2>⏳ Posições simuladas em aberto <span class="count" id="openCount">0</span></h2>
+    <div id="openList"></div>
+  </section>
+
+  <section class="card">
+    <h2>🐋 Últimos trades de baleias <span class="count" id="whaleTradeCount">0</span></h2>
+    <div id="whaleList"></div>
+  </section>
+
+  <section class="card">
+    <h2>🏆 Ranking de baleias</h2>
+    <div id="ranking"></div>
+  </section>
+
+  <footer>
+    <b>Aviso:</b> isto é uma <b>simulação (paper trading)</b> — nenhum dinheiro real é movimentado.
+    Slippage, liquidez do book e taxas não são simulados, então o resultado real seria diferente.
+    Nada aqui é recomendação de investimento.
+  </footer>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const fmt$ = v => (v < 0 ? "−$ " : "$ ") + Math.abs(v).toLocaleString("pt-BR",{minimumFractionDigits:2, maximumFractionDigits:2});
+const cls = v => v > 0 ? "pos" : v < 0 ? "neg" : "neu";
+
+function setKpi(id, text, v){
+  const el = $(id); el.textContent = text;
+  el.className = "value " + cls(v);
+}
+
+async function load(){
+  let d;
+  try{
+    const r = await fetch("data.json", {cache:"no-store"});
+    if(!r.ok) throw 0;
+    d = await r.json();
+  }catch(e){
+    document.querySelector(".wrap").insertAdjacentHTML("beforeend",
+      '<div class="empty"><span class="big">⏳</span>Aguardando a primeira rodada do monitor…</div>');
+    return;
+  }
+  const k = d.kpis || {};
+
+  // header
+  try{
+    const dt = new Date(d.last_update);
+    $("lastUpdate").textContent = dt.toLocaleString("pt-BR",{timeZone:"America/Sao_Paulo",day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}) + " BRT";
+  }catch(e){ $("lastUpdate").textContent = d.last_update || "—"; }
+  $("whaleCount").textContent = (k.whales_tracked||0) + " carteiras rastreadas";
+  $("kMinWhale").textContent = "$ " + Number(d.config?.min_whale_trade_usd||0).toLocaleString("pt-BR");
+
+  // KPIs
+  setKpi("kPnl", fmt$(k.total_pnl_usd||0), k.total_pnl_usd||0);
+  $("kPnlSub").textContent = (k.n_closed||0) + " operações fechadas";
+  if(k.win_rate == null){ $("kWin").textContent = "—"; }
+  else{ setKpi("kWin", (k.win_rate*100).toFixed(1).replace(".",",") + "%", 0); }
+  $("kWinSub").textContent = (k.n_closed||0) + " fechadas";
+  setKpi("kBest", k.best_usd==null?"—":fmt$(k.best_usd), k.best_usd);
+  setKpi("kWorst", k.worst_usd==null?"—":fmt$(k.worst_usd), k.worst_usd);
+  $("kOpen").textContent = k.n_open||0; $("kOpen").className = "value neu";
+  const emJogo = (d.open_positions||[]).reduce((a,p)=>a+(p.stake_usd||0),0);
+  $("kOpenSub").textContent = fmt$(emJogo) + " em jogo (simulado)";
+
+  drawChart(d.equity_curve||[]);
+
+  // posições abertas
+  const open = d.open_positions||[];
+  $("openCount").textContent = open.length;
+  $("openList").innerHTML = open.length ? open.map(p=>`
+    <div class="pos-item">
+      <div class="pos-top">
+        <div class="pos-title">${esc(p.title||"?")}</div>
+        <div class="pos-pnl ${cls(p.unrealized_pnl_usd||0)}">${p.unrealized_pnl_usd==null?"—":fmt$(p.unrealized_pnl_usd)}</div>
+      </div>
+      <div class="pos-meta">
+        <span class="chip">lado <b>${esc(p.side||"")}</b></span>
+        <span class="chip">entrada <b>${num(p.entry_price)}</b></span>
+        <span class="chip">atual <b>${p.current_price==null?"—":num(p.current_price)}</b></span>
+        <span class="chip">stake <b>$ ${p.stake_usd}</b></span>
+        <span class="chip">🐋 ${esc(p.wallet_name||p.wallet||"")}</span>
+      </div>
+    </div>`).join("")
+    : '<div class="empty"><span class="big">💤</span>Nenhuma posição simulada em aberto.</div>';
+
+  // últimos trades de baleias
+  const wt = d.recent_whales||[];
+  $("whaleTradeCount").textContent = wt.length;
+  $("whaleList").innerHTML = wt.length ? wt.map(t=>{
+    const isYes = /yes/i.test(t.outcome||"");
+    return `<div class="whale">
+      <div class="avatar">🐋</div>
+      <div class="info">
+        <div class="wname">${esc(t.wallet_name||shortW(t.wallet))} <span class="side ${isYes?"yes":"no"}">${esc(t.outcome||"")}</span></div>
+        <div class="wmarket">${esc(t.title||"")}</div>
+      </div>
+      <div class="wval"><div class="amt">$ ${Number(t.value_usd||0).toLocaleString("pt-BR",{maximumFractionDigits:0})}</div>
+      <div style="font-size:11px;color:var(--faint)">@ ${num(t.price)}</div></div>
+    </div>`;
+  }).join("")
+  : '<div class="empty"><span class="big">🔭</span>Nenhum trade de baleia recente.</div>';
+
+  // ranking
+  const rk = d.whale_ranking||[];
+  const maxV = Math.max(...rk.map(r=>r.volume_usd||0), 1);
+  $("ranking").innerHTML = rk.length ? rk.map((r,i)=>`
+    <div class="rank">
+      <div class="n">${i+1}º</div>
+      <div>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-weight:600">${esc(r.wallet_name||r.wallet)}</div>
+        <div class="bar"><i style="width:${Math.max(4,(r.volume_usd/maxV*100)).toFixed(1)}%"></i></div>
+      </div>
+      <div><div class="vol">$ ${Number(r.volume_usd||0).toLocaleString("pt-BR",{maximumFractionDigits:0})}</div>
+      <div class="trades">${r.trades} trades</div></div>
+    </div>`).join("")
+  : '<div class="empty"><span class="big">📭</span>Sem baleias ainda.</div>';
+}
+
+function esc(s){ return String(s??"").replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function num(v){ return v==null?"—":Number(v).toFixed(3).replace(".",","); }
+function shortW(w){ return w && w.length>12 ? w.slice(0,6)+"…"+w.slice(-4) : (w||"?"); }
+
+function drawChart(curve){
+  const cv = $("chart"), ctx = cv.getContext("2d");
+  const dpr = window.devicePixelRatio||1;
+  const W = cv.clientWidth, H = cv.clientHeight;
+  cv.width = W*dpr; cv.height = H*dpr; ctx.scale(dpr,dpr);
+  ctx.clearRect(0,0,W,H);
+  if(curve.length < 2){
+    ctx.fillStyle = "#5b6472"; ctx.font = "13px sans-serif"; ctx.textAlign = "center";
+    ctx.fillText("Sem operações fechadas ainda", W/2, H/2);
+    $("chartMin").textContent=""; $("chartMax").textContent=""; return;
+  }
+  const vals = curve.map(p=>p.pnl);
+  let mn = Math.min(0,...vals), mx = Math.max(0,...vals);
+  if(mx-mn < 1) { mx+=1; mn-=1; }
+  const X = i => 8 + i*(W-16)/(curve.length-1);
+  const Y = v => H-14 - (v-mn)/(mx-mn)*(H-28);
+  // linha zero
+  ctx.strokeStyle = "#2a3342"; ctx.setLineDash([4,4]); ctx.beginPath();
+  ctx.moveTo(0,Y(0)); ctx.lineTo(W,Y(0)); ctx.stroke(); ctx.setLineDash([]);
+  // área
+  const last = vals[vals.length-1];
+  const col = last>=0 ? "#22c55e" : "#ef4444";
+  const g = ctx.createLinearGradient(0,0,0,H);
+  g.addColorStop(0, col+"44"); g.addColorStop(1, col+"00");
+  ctx.beginPath(); ctx.moveTo(X(0),Y(vals[0]));
+  curve.forEach((p,i)=>ctx.lineTo(X(i),Y(p.pnl)));
+  ctx.lineTo(X(curve.length-1),Y(0)); ctx.lineTo(X(0),Y(0)); ctx.closePath();
+  ctx.fillStyle = g; ctx.fill();
+  // linha
+  ctx.beginPath(); ctx.moveTo(X(0),Y(vals[0]));
+  curve.forEach((p,i)=>ctx.lineTo(X(i),Y(p.pnl)));
+  ctx.strokeStyle = col; ctx.lineWidth = 2.5; ctx.lineJoin="round"; ctx.stroke();
+  // último ponto
+  ctx.beginPath(); ctx.arc(X(curve.length-1),Y(last),4.5,0,7);
+  ctx.fillStyle = col; ctx.fill(); ctx.strokeStyle="#0b0e13"; ctx.lineWidth=2; ctx.stroke();
+  $("chartMin").textContent = fmt$(mn); $("chartMax").textContent = fmt$(mx);
+}
+
+load();
+setInterval(load, 5*60*1000);
+window.addEventListener("resize", ()=>load());
+</script>
+</body>
+</html>
